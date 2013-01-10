@@ -1,0 +1,7 @@
+[
+	// Insert date line
+	{ "keys": ["f8"],                "command": "notedate" }
+	
+]
+
+
