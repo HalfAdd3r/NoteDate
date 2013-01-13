@@ -15,19 +15,26 @@
 import sublime, sublime_plugin
 import datetime
 
+#Spaces to Create 80 char line with 10 char date
+SPACE_NUMBER = 35
+
 class notedateCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
-		intSpaceNum = 35 #Spaces to Create 80 char line
+                # Loop over all selections
+                for line in self.view.sel():
+                        self.InsertLine(edit, line)
 
+        # InsertLine - ARGS: Edit and Cursor Location
+        def InsertLine(self,edit,cursorloc):
 		# Get Current Line
-                line = self.view.line(self.view.sel()[0]) # Get Current line 
+                line = self.view.line(cursorloc) # Get Current line 
 
                 # Spacer 
-                self.view.insert(edit, line.begin(), "-" * intSpaceNum)
+                self.view.insert(edit, line.begin(), "-" * SPACE_NUMBER)
 
 		# Date formated as mm/dd/yyyy
                 today = datetime.date.today()
 		self.view.insert(edit,line.begin(), today.strftime("%m/%d/%Y"))
 
                 #Spacer 
-                self.view.insert(edit, line.begin(), "-" * intSpaceNum)	
+                self.view.insert(edit, line.begin(), "-" * SPACE_NUMBER)	
