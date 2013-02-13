@@ -3,7 +3,7 @@
 # Creation Date: 01/09/2013
 # Platform: Sublime Text 2
 # Description: My first Sublime Text 2 Plug-in.  Adds a dated dividing line for
-#				my personal note system
+#                               my personal note system
 #
 #------------------------------------------------------------------------------
 # Modified:
@@ -19,22 +19,22 @@ import datetime
 SPACE_NUMBER = 35
 
 class notedateCommand(sublime_plugin.TextCommand):
-	def run(self, edit):
+        def run(self, edit):
                 # Loop over all selections
                 for line in self.view.sel():
                         self.InsertLine(edit, line)
 
         # InsertLine - ARGS: Edit and Cursor Location
         def InsertLine(self,edit,cursorloc):
-		# Get Current Line
-                line = self.view.line(cursorloc) # Get Current line 
+                # Get Current Line
+                line = self.view.line(cursorloc) # Get Current line
 
-                # Spacer 
+                # Spacer
                 self.view.insert(edit, line.begin(), "-" * SPACE_NUMBER)
 
-		# Date formated as mm/dd/yyyy
+                # Date formated as mm/dd/yyyy
                 today = datetime.date.today()
-		self.view.insert(edit,line.begin(), today.strftime("%m/%d/%Y"))
+                self.view.insert(edit,line.begin(), today.strftime("%m/%d/%Y"))
 
-                #Spacer 
-                self.view.insert(edit, line.begin(), "-" * SPACE_NUMBER)	
+                #Spacer
+                self.view.insert(edit, line.begin(), "-" * SPACE_NUMBER)
